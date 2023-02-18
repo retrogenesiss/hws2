@@ -11,6 +11,14 @@ type AffairsPropsType = {
 }
 
 function Affairs(props: AffairsPropsType) {
+    const mappedAffairs = props.data.map((a: AffairType) => (
+        <Affair
+            key={a._id} // кеи ОБЯЗАТЕЛЬНЫ в 99% - так что лучше их писать всегда при создании компонент в мапе
+            affair={a}
+            deleteAffairCallback={props.deleteAffairCallback}
+        />
+    ))
+
     const setAll = () => {
         props.setFilter('all')  // need to fix
     }
@@ -29,14 +37,6 @@ function Affairs(props: AffairsPropsType) {
     const cnMiddle = s.button + ' ' + s.middle + (props.filter === 'middle' ? ' ' + s.active : '')
     const cnLow = s.button + ' ' + s.low + (props.filter === 'low' ? ' ' + s.active : '')
 
-    const mappedAffairs = props.data.map((a: AffairType) => (
-        <Affair
-            key={a._id} // кеи ОБЯЗАТЕЛЬНЫ в 99% - так что лучше их писать всегда при создании компонент в мапе
-            affair={a}
-            deleteAffairCallback={props.deleteAffairCallback}
-        />
-    ))
-
     return (
         <div>
             <div className={s.buttonContainer}>
@@ -44,29 +44,25 @@ function Affairs(props: AffairsPropsType) {
                     id={'hw2-button-all'}
                     onClick={setAll}
                     className={cnAll}
-                >
-                    All
+                >All
                 </button>
                 <button
                     id={'hw2-button-high'}
                     onClick={setHigh}
                     className={cnHigh}
-                >
-                    High
+                >High
                 </button>
                 <button
                     id={'hw2-button-middle'}
                     onClick={setMiddle}
                     className={cnMiddle}
-                >
-                    Middle
+                >Middle
                 </button>
                 <button
                     id={'hw2-button-low'}
                     onClick={setLow}
                     className={cnLow}
-                >
-                    Low
+                >Low
                 </button>
             </div>
             <div className={s.affairs}>{mappedAffairs}</div>
