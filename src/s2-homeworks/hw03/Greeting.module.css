@@ -1,7 +1,11 @@
 .greetingForm {
+
 }
 
 .inputAndButtonContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }
 
 .error {
@@ -9,29 +13,51 @@
 }
 
 .input {
-
+    width: 400px;
+    height: 30px;
+    border-radius: 5px;
 }
 
 .input:focus {
 }
 
 .errorInput {
-    border: red 1px solid;
+    width: 400px;
+    height: 30px;
+    border-radius: 5px;
+    border: red 2px solid;
 }
 
 .button {
+    overflow: hidden;
+    padding: 5px 24px;
+    height: 30px;
+
+    border-radius: 3px;
+    border: none;
+
+    background-color: #0066CC;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    cursor: pointer;
 }
 
 .button:focus {
+
 }
 
 .button:active {
+
 }
 
 .button:disabled {
+    background-color: #80B2E5;
 }
 
 .text {
+    opacity: 50%;
 }
 
 .greeting {
