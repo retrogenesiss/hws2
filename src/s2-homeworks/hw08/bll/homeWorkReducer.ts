@@ -8,8 +8,10 @@ export const homeWorkReducer = (state: UserType[], action: ActionType): UserType
     switch (action.type) {
         case 'sort': { // by name
             const payload = action.payload
-            return state.map(el => payload === 'up' ? {...el, _id: + 1}
-                : payload === 'down' ? {...el, _id: 0} : el)
+            const copyState = state.map(el => ({...el}))
+            const upState = copyState.sort((a, b) => a.name > b.name ? 1 : -1)
+
+            return payload === 'up' ? upState : state ? copyState.reverse() : state
         }
         case 'check': {
             const payload = action.payload
@@ -19,3 +21,6 @@ export const homeWorkReducer = (state: UserType[], action: ActionType): UserType
             return state
     }
 }
+
+//  return state.map(el => payload === 'up' ? {...el, _id: +1}
+//                 : payload === 'down' ? {...el, _id: 0} : el)
