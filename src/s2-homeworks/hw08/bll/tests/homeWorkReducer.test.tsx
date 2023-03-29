@@ -38,4 +38,5 @@ test('check age 18', () => {
     })
 
     expect(newState.length).toBe(4)
+    console.log(newState.length)
 })
