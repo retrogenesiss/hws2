@@ -1,63 +1,63 @@
 .sidebar {
-    /*position: fixed;*/
-    top: 0;
-    left: -317px;
-    bottom: 0;
-    width: 300px;
-    padding-top: 80px;
-    /*transform: translateX(-100%);*/
-    transition: 0.3s ease-out;
-    background-color: #fff;
-    z-index: 20;
+    /*!*position: fixed;*!*/
+    /*top: 0;*/
+    /*left: -317px;*/
+    /*bottom: 0;*/
+    /*width: 300px;*/
+    /*padding-top: 80px;*/
+    /*!*transform: translateX(-100%);*!*/
+    /*transition: 0.3s ease-out;*/
+    /*background-color: #fff;*/
+    /*z-index: 20;*/
 }
 
 .sidebar.open {
-    transform: translateX(0);
+    /*transform: translateX(0);*/
 }
 
 .background {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 10;
+    /*position: fixed;*/
+    /*top: 0;*/
+    /*right: 0;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*background-color: rgba(0, 0, 0, 0.3);*/
+    /*z-index: 10;*/
 }
 
 .nav {
-    display: flex;
-    flex-direction: column;
-    /*justify-content: center;*/
-    /*align-items: center;*/
-    margin-top: 63px;
-    padding-left: 70px;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*!*justify-content: center;*!*/
+    /*!*align-items: center;*!*/
+    /*margin-top: 63px;*/
+    /*padding-left: 70px;*/
 }
 
 .nav a {
-    color: black;
-    text-decoration: none;
+    /*color: black;*/
+    /*text-decoration: none;*/
 }
 
 .nav a:hover {
-    color: #0080ff;
+    /*color: #0080ff;*/
 }
 
 .nav a.active {
-    color: #0059b2;
-    text-decoration: underline;
+    /*color: #0059b2;*/
+    /*text-decoration: underline;*/
 }
 
 .close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
+    /*position: absolute;*/
+    /*top: 20px;*/
+    /*right: 20px;*/
+    /*border: none;*/
+    /*background-color: transparent;*/
+    /*cursor: pointer;*/
 }
 
 .close img {
-    width: 24px;
-    height: 24px;
+    /*width: 24px;*/
+    /*height: 24px;*/
 }
