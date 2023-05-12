@@ -1,63 +1,73 @@
 .sidebar {
-    /*!*position: fixed;*!*/
-    /*top: 0;*/
-    /*left: -317px;*/
-    /*bottom: 0;*/
-    /*width: 300px;*/
-    /*padding-top: 80px;*/
-    /*!*transform: translateX(-100%);*!*/
-    /*transition: 0.3s ease-out;*/
     /*background-color: #fff;*/
-    /*z-index: 20;*/
+    /*z-index: 1003;*/
+    /*top: 0;*/
+    /*overflow-x: hidden;*/
+    /*transition: all 0.5s ease;*/
+    /*height: 100%;*/
+    /*width: 0;*/
+    /*position: fixed;*/
+    /*left: 0;*/
 }
 
 .sidebar.open {
-    /*transform: translateX(0);*/
+    /*left: 0;*/
+    /*height: 100vh;*/
+    /*width: 310px;*/
+    /*background-color: #fff;*/
+    /*transition: all 0.5s ease;*/
 }
 
 .background {
-    /*position: fixed;*/
-    /*top: 0;*/
-    /*right: 0;*/
-    /*bottom: 0;*/
+    /*background-color: rgba(173, 171, 171, 0.49);*/
+    /*z-index: 1002;*/
     /*left: 0;*/
-    /*background-color: rgba(0, 0, 0, 0.3);*/
-    /*z-index: 10;*/
+    /*top: 0;*/
+    /*overflow-x: hidden;*/
+    /*transition: 0.5s;*/
+    /*height: 100%;*/
+    /*width: 100%;*/
+    /*position: fixed;*/
 }
 
 .nav {
+    /*position: absolute;*/
+    /*margin: 0 0 0 70px;*/
     /*display: flex;*/
     /*flex-direction: column;*/
-    /*!*justify-content: center;*!*/
-    /*!*align-items: center;*!*/
-    /*margin-top: 63px;*/
-    /*padding-left: 70px;*/
+    /*gap: 45px;*/
+    /*white-space: nowrap;*/
 }
 
 .nav a {
-    /*color: black;*/
-    /*text-decoration: none;*/
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000000;
 }
 
 .nav a:hover {
-    /*color: #0080ff;*/
+    color: #0059B2;
 }
 
 .nav a.active {
-    /*color: #0059b2;*/
-    /*text-decoration: underline;*/
+    color: #58ACFF;
+    text-decoration: underline;
+}
+
+.buttonWrapper {
+    display: flex;
+    justify-content: flex-end;
+    padding: 22px 29px 28px 0;
 }
 
 .close {
-    /*position: absolute;*/
-    /*top: 20px;*/
-    /*right: 20px;*/
-    /*border: none;*/
-    /*background-color: transparent;*/
-    /*cursor: pointer;*/
+    cursor: pointer;
+    border: none;
+    background-color: #fff;
 }
 
 .close img {
-    /*width: 24px;*/
-    /*height: 24px;*/
 }
