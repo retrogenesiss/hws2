@@ -19,7 +19,6 @@ const HW13 = () => {
     const [text, setText] = useState('')
     const [info, setInfo] = useState('')
     const [image, setImage] = useState('')
-    const [buttonsDisabled, setButtonsDisabled] = useState(false)
 
     const send = (x?: boolean | null) => () => {
         const url =
@@ -31,30 +30,31 @@ const HW13 = () => {
         setImage('')
         setText('')
         setInfo('...loading')
-        setButtonsDisabled(true)
 
         axios
             .post(url, {success: x})
             .then((res) => {
-                setCode('Код 200!')
+                setCode(`Код ${res.status}!`)
+                setImage(success200)
                 // дописать
-                setButtonsDisabled(false)
-                if (res.status === 200) {
-                    setImage(success200);
-                } else if (res.status === 400) {
-                    setImage(error400);
-                } else if (res.status === 500) {
-                    setImage(error500);
-                } else {
-                    setImage(errorUnknown);
-                }
-                setInfo(res.statusText);
+                setInfo(res.data.info)
+                setText(res.data.errorText)
             })
             .catch((e) => {
-                setButtonsDisabled(false)
-                // дописать
-                setInfo(e.message);
-                setImage(errorUnknown);
+                if (e.response.status) {
+                    console.log(e.response.data.errorText)
+                    setCode(`Ошибка ${e.response.status}!!`)
+                    setImage(e.response.status === 500 ? error500 : error400)
+                    setInfo(e.response.data.info)
+                    setText(e.response.data.errorText)
+
+                } else {
+                    // console.log(e.name, e.message)
+                    setImage(errorUnknown)
+                    setCode('Error')
+                    setInfo(e.name)
+                    setText(e.message)
+                }
             })
     }
 
@@ -69,7 +69,7 @@ const HW13 = () => {
                         onClick={send(true)}
                         xType={'secondary'}
                         // дописать
-                        disabled={buttonsDisabled}
+                        disabled={info === "...loading"}
                     >
                         Send true
                     </SuperButton>
@@ -78,7 +78,7 @@ const HW13 = () => {
                         onClick={send(false)}
                         xType={'secondary'}
                         // дописать
-                        disabled={buttonsDisabled}
+                        disabled={info === "...loading"}
                     >
                         Send false
                     </SuperButton>
@@ -87,7 +87,7 @@ const HW13 = () => {
                         onClick={send(undefined)}
                         xType={'secondary'}
                         // дописать
-                        disabled={buttonsDisabled}
+                        disabled={info === "...loading"}
                     >
                         Send undefined
                     </SuperButton>
@@ -96,7 +96,7 @@ const HW13 = () => {
                         onClick={send(null)} // имитация запроса на не корректный адрес
                         xType={'secondary'}
                         // дописать
-                        disabled={buttonsDisabled}
+                        disabled={info === "...loading"}
                     >
                         Send null
                     </SuperButton>
