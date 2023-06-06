@@ -36,8 +36,9 @@ const SuperDebouncedInput: React.FC<SuperDebouncedInputPropsType> = (
             clearTimeout(timerId)
             // остановить предыдущий таймер
             // запустить новый на 1500ms, в котором вызовется функция
-            const newTimerId = setTimeout(onDebouncedChange, 1500)
-            setTimerId(+newTimerId)
+            const ID = setTimeout(() => onDebouncedChange(value), 1500);
+            //
+            setTimerId(+ID)
         }
     }
 
