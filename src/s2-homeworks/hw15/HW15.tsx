@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react'
+import s8 from './../hw08/HW8.module.css'
 import s2 from '../../s1-main/App.module.css'
 import s from './HW15.module.css'
 import axios from 'axios'
 import SuperPagination from './common/c9-SuperPagination/SuperPagination'
 import {useSearchParams} from 'react-router-dom'
 import SuperSort from './common/c10-SuperSort/SuperSort'
+import {Loader} from "../hw10/Loader";
 
 /*
 * 1 - дописать SuperPagination
@@ -47,7 +49,7 @@ const HW15 = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [techs, setTechs] = useState<TechType[]>([])
 
-    const sendQuery = (params: any) => {
+    const sendQuery = (params: ParamsType) => {
         setLoading(true)
         getTechs(params)
             .then((res) => {
@@ -60,6 +62,9 @@ const HW15 = () => {
                 }
                 //
             })
+            .catch((error) => {
+                throw error;
+            });
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
@@ -69,7 +74,7 @@ const HW15 = () => {
         // setPage(
         // setCount(
         sendQuery({page: newPage, count: newCount, sort})
-        setSearchParams({page: page.toString(), count: count.toString()})
+        setSearchParams({page: newPage.toString(), count: newCount.toString()})
         // sendQuery(
         // setSearchParams(
 
@@ -83,7 +88,7 @@ const HW15 = () => {
         // setSort(
         // setPage(1) // при сортировке сбрасывать на 1 страницу
         sendQuery({page, count, sort: newSort})
-        setSearchParams({page: page.toString(), count: count.toString()})
+        setSearchParams({page: '1', count: count.toString()})
         // sendQuery(
         // setSearchParams(
 
@@ -92,10 +97,12 @@ const HW15 = () => {
 
     useEffect(() => {
         const params = Object.fromEntries(searchParams)
-        sendQuery({page: params.page, count: params.count})
-        setPage(+params.page || 1)
-        setCount(+params.count || 4)
-    }, [])
+        const parsedPage = +params.page || 1; // Parse page to number
+        const parsedCount = +params.count || 4; // Parse count to number
+        sendQuery({page: parsedPage, count: parsedCount, sort})
+        setPage(parsedPage)
+        setCount(parsedCount)
+    }, [searchParams, sort])
 
     const mappedTechs = techs.map(t => (
         <div key={t.id} className={s.row}>
@@ -111,31 +118,43 @@ const HW15 = () => {
 
     return (
         <div id={'hw15'}>
-            <div className={s2.hwTitle}>Homework #15</div>
+            <div className={s2.container}>
+                <div className={s2.hwTitle}>Homework №15</div>
+            </div>
+            <hr/>
+            <div className={s2.container}>
+                <div className={s2.hw} style={{
+                    marginTop: "32px",
+                    position: "relative",
+                    width: "606px",
+                }}>
+                    {
+                        idLoading &&
+                        <div className={s.loadingWrapper}>
+                            <div className={s.loading}>
+                                <Loader />
+                            </div>
+                        </div>
+                    }
 
-            <div className={s2.hw}>
-                {idLoading && <div id={'hw15-loading'} className={s.loading}>Loading...</div>}
+                    <SuperPagination
+                        page={page}
+                        itemsCountForPage={count}
+                        totalCount={totalCount}
+                        onChange={onChangePagination}
+                    />
 
-                <SuperPagination
-                    page={page}
-                    itemsCountForPage={count}
-                    totalCount={totalCount}
-                    onChange={onChangePagination}
-                />
+                    <table className={s8.users} style={{marginTop: "38px"}}>
+                        <thead className={s8.thead} style={{background: "#E5E5E5"}}>
+                        <tr>
+                            <td className={s8.nameCol}>Tech<SuperSort sort={sort} value={'tech'} onChange={onChangeSort}/></td>
+                            <td className={s8.ageCol}>Developer<SuperSort sort={sort} value={'developer'} onChange={onChangeSort}/></td>
+                        </tr>
+                        </thead>
 
-                <div className={s.rowHeader}>
-                    <div className={s.techHeader}>
-                        tech
-                        <SuperSort sort={sort} value={'tech'} onChange={onChangeSort}/>
-                    </div>
-
-                    <div className={s.developerHeader}>
-                        developer
-                        <SuperSort sort={sort} value={'developer'} onChange={onChangeSort}/>
-                    </div>
+                        <tbody>{mappedTechs}</tbody>
+                    </table>
                 </div>
-
-                {mappedTechs}
             </div>
         </div>
     )

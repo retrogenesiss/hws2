@@ -5,19 +5,47 @@
 }
 
 .users {
+    border-collapse: collapse;
+    border-radius: 2px 2px 0 0;
 }
 
 .buttonsContainer {
+    width: 600px;
+    display: flex;
+    justify-content: right;
+    gap: 12px;
+    margin-bottom: 18px;
 }
 
 .container {
 }
 
 .thead {
+    height: 36px;
+    background-color: var(--background);
+    border-collapse: collapse;
+    border-radius: 2px 2px 0 0;
+    font-weight: 600;
 }
 
 .nameCol {
+    font-style: normal;
+    padding: 16px;
+    font-size: 14px;
+    line-height: 16px;
+    /*color: var(--color-text);*/
+    text-align: left;
+    width: 300px;
+    border-bottom: 1px solid #E5E5E5;
 }
 
 .ageCol {
+    font-style: normal;
+    padding: 16px;
+    font-size: 14px;
+    line-height: 16px;
+    /*color: var(--color-text);*/
+    text-align: left;
+    width: 300px;
+    border-bottom: 1px solid #E5E5E5;
 }
